@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+binli.fsb-zg.com/Article/details/991366.sHtML<br>
+binli.fsb-zg.com/Article/details/836303.sHtML<br>
+binli.fsb-zg.com/Article/details/822857.sHtML<br>
+binli.fsb-zg.com/Article/details/135228.sHtML<br>
+binli.fsb-zg.com/Article/details/640362.sHtML<br>
+binli.fsb-zg.com/Article/details/678150.sHtML<br>
+binli.fsb-zg.com/Article/details/821118.sHtML<br>
+binli.fsb-zg.com/Article/details/052409.sHtML<br>
+binli.fsb-zg.com/Article/details/011291.sHtML<br>
+binli.fsb-zg.com/Article/details/097220.sHtML<br>
+binli.fsb-zg.com/Article/details/239951.sHtML<br>
+binli.fsb-zg.com/Article/details/803729.sHtML<br>
+binli.fsb-zg.com/Article/details/875280.sHtML<br>
+binli.fsb-zg.com/Article/details/650700.sHtML<br>
+binli.fsb-zg.com/Article/details/206375.sHtML<br>
+binli.fsb-zg.com/Article/details/835680.sHtML<br>
+binli.fsb-zg.com/Article/details/944876.sHtML<br>
+binli.fsb-zg.com/Article/details/279738.sHtML<br>
+binli.fsb-zg.com/Article/details/382732.sHtML<br>
+binli.fsb-zg.com/Article/details/607733.sHtML<br>
+binli.fsb-zg.com/Article/details/304704.sHtML<br>
+binli.fsb-zg.com/Article/details/165888.sHtML<br>
+binli.fsb-zg.com/Article/details/083226.sHtML<br>
+binli.fsb-zg.com/Article/details/791133.sHtML<br>
+binli.fsb-zg.com/Article/details/859148.sHtML<br>
+binli.fsb-zg.com/Article/details/729286.sHtML<br>
+binli.fsb-zg.com/Article/details/574253.sHtML<br>
+binli.fsb-zg.com/Article/details/056660.sHtML<br>
+binli.fsb-zg.com/Article/details/792230.sHtML<br>
+binli.fsb-zg.com/Article/details/025530.sHtML<br>
+binli.fsb-zg.com/Article/details/496852.sHtML<br>
+binli.fsb-zg.com/Article/details/106882.sHtML<br>
+binli.fsb-zg.com/Article/details/571641.sHtML<br>
+binli.fsb-zg.com/Article/details/261707.sHtML<br>
+binli.fsb-zg.com/Article/details/055707.sHtML<br>
+binli.fsb-zg.com/Article/details/203990.sHtML<br>
+binli.fsb-zg.com/Article/details/710594.sHtML<br>
+binli.fsb-zg.com/Article/details/805848.sHtML<br>
+binli.fsb-zg.com/Article/details/931479.sHtML<br>
+binli.fsb-zg.com/Article/details/963881.sHtML<br>
+binli.fsb-zg.com/Article/details/942514.sHtML<br>
+binli.fsb-zg.com/Article/details/936586.sHtML<br>
+binli.fsb-zg.com/Article/details/047290.sHtML<br>
+binli.fsb-zg.com/Article/details/277582.sHtML<br>
+binli.fsb-zg.com/Article/details/891332.sHtML<br>
+binli.fsb-zg.com/Article/details/673307.sHtML<br>
+binli.fsb-zg.com/Article/details/274492.sHtML<br>
+binli.fsb-zg.com/Article/details/135559.sHtML<br>
+binli.fsb-zg.com/Article/details/089954.sHtML<br>
+binli.fsb-zg.com/Article/details/427626.sHtML<br>
+binli.fsb-zg.com/Article/details/276694.sHtML<br>
+binli.fsb-zg.com/Article/details/328881.sHtML<br>
+binli.fsb-zg.com/Article/details/969211.sHtML<br>
+binli.fsb-zg.com/Article/details/542369.sHtML<br>
+binli.fsb-zg.com/Article/details/727732.sHtML<br>
+binli.fsb-zg.com/Article/details/543902.sHtML<br>
+binli.fsb-zg.com/Article/details/050166.sHtML<br>
+binli.fsb-zg.com/Article/details/529602.sHtML<br>
+binli.fsb-zg.com/Article/details/421552.sHtML<br>
+binli.fsb-zg.com/Article/details/974883.sHtML<br>
+binli.fsb-zg.com/Article/details/070565.sHtML<br>
+binli.fsb-zg.com/Article/details/090729.sHtML<br>
+binli.fsb-zg.com/Article/details/201668.sHtML<br>
+binli.fsb-zg.com/Article/details/755332.sHtML<br>
+binli.fsb-zg.com/Article/details/055510.sHtML<br>
+binli.fsb-zg.com/Article/details/313502.sHtML<br>
+binli.fsb-zg.com/Article/details/069118.sHtML<br>
+binli.fsb-zg.com/Article/details/219321.sHtML<br>
+binli.fsb-zg.com/Article/details/108077.sHtML<br>
+binli.fsb-zg.com/Article/details/806211.sHtML<br>
+binli.fsb-zg.com/Article/details/863458.sHtML<br>
+binli.fsb-zg.com/Article/details/122191.sHtML<br>
+binli.fsb-zg.com/Article/details/587959.sHtML<br>
+binli.fsb-zg.com/Article/details/347643.sHtML<br>
+binli.fsb-zg.com/Article/details/942514.sHtML<br>
+binli.fsb-zg.com/Article/details/330441.sHtML<br>
+binli.fsb-zg.com/Article/details/613001.sHtML<br>
+binli.fsb-zg.com/Article/details/539859.sHtML<br>
+binli.fsb-zg.com/Article/details/755376.sHtML<br>
+binli.fsb-zg.com/Article/details/341081.sHtML<br>
+binli.fsb-zg.com/Article/details/619182.sHtML<br>
+binli.fsb-zg.com/Article/details/655017.sHtML<br>
+binli.fsb-zg.com/Article/details/232712.sHtML<br>
+binli.fsb-zg.com/Article/details/784258.sHtML<br>
+binli.fsb-zg.com/Article/details/083813.sHtML<br>
+binli.fsb-zg.com/Article/details/950447.sHtML<br>
+binli.fsb-zg.com/Article/details/312296.sHtML<br>
+binli.fsb-zg.com/Article/details/758988.sHtML<br>
+binli.fsb-zg.com/Article/details/798391.sHtML<br>
+binli.fsb-zg.com/Article/details/496395.sHtML<br>
+binli.fsb-zg.com/Article/details/193743.sHtML<br>
+binli.fsb-zg.com/Article/details/208214.sHtML<br>
+binli.fsb-zg.com/Article/details/496442.sHtML<br>
+binli.fsb-zg.com/Article/details/964605.sHtML<br>
+binli.fsb-zg.com/Article/details/757076.sHtML<br>
+binli.fsb-zg.com/Article/details/458787.sHtML<br>
+binli.fsb-zg.com/Article/details/198992.sHtML<br>
+binli.fsb-zg.com/Article/details/914077.sHtML<br>
+binli.fsb-zg.com/Article/details/417630.sHtML<br>
+binli.fsb-zg.com/Article/details/327470.sHtML<br>
+binli.fsb-zg.com/Article/details/225307.sHtML<br>
+binli.fsb-zg.com/Article/details/311348.sHtML<br>
+binli.fsb-zg.com/Article/details/198444.sHtML<br>
+binli.fsb-zg.com/Article/details/344917.sHtML<br>
+binli.fsb-zg.com/Article/details/598444.sHtML<br>
+binli.fsb-zg.com/Article/details/273812.sHtML<br>
+binli.fsb-zg.com/Article/details/574690.sHtML<br>
+binli.fsb-zg.com/Article/details/879589.sHtML<br>
+binli.fsb-zg.com/Article/details/599391.sHtML<br>
+binli.fsb-zg.com/Article/details/896582.sHtML<br>
+binli.fsb-zg.com/Article/details/176152.sHtML<br>
+binli.fsb-zg.com/Article/details/717600.sHtML<br>
+binli.fsb-zg.com/Article/details/600490.sHtML<br>
+binli.fsb-zg.com/Article/details/947332.sHtML<br>
+binli.fsb-zg.com/Article/details/757874.sHtML<br>
+binli.fsb-zg.com/Article/details/346219.sHtML<br>
+binli.fsb-zg.com/Article/details/612523.sHtML<br>
+binli.fsb-zg.com/Article/details/137599.sHtML<br>
+binli.fsb-zg.com/Article/details/165670.sHtML<br>
+binli.fsb-zg.com/Article/details/522299.sHtML<br>
+binli.fsb-zg.com/Article/details/653392.sHtML<br>
+binli.fsb-zg.com/Article/details/126115.sHtML<br>
+binli.fsb-zg.com/Article/details/315100.sHtML<br>
+binli.fsb-zg.com/Article/details/977415.sHtML<br>
+binli.fsb-zg.com/Article/details/425071.sHtML<br>
+binli.fsb-zg.com/Article/details/783650.sHtML<br>
+binli.fsb-zg.com/Article/details/974925.sHtML<br>
+binli.fsb-zg.com/Article/details/722077.sHtML<br>
+binli.fsb-zg.com/Article/details/014985.sHtML<br>
+binli.fsb-zg.com/Article/details/211001.sHtML<br>
+binli.fsb-zg.com/Article/details/863292.sHtML<br>
+binli.fsb-zg.com/Article/details/199740.sHtML<br>
+binli.fsb-zg.com/Article/details/235241.sHtML<br>
+binli.fsb-zg.com/Article/details/913039.sHtML<br>
+binli.fsb-zg.com/Article/details/015746.sHtML<br>
+binli.fsb-zg.com/Article/details/063306.sHtML<br>
+binli.fsb-zg.com/Article/details/066286.sHtML<br>
+binli.fsb-zg.com/Article/details/321770.sHtML<br>
+binli.fsb-zg.com/Article/details/330221.sHtML<br>
+binli.fsb-zg.com/Article/details/057624.sHtML<br>
+binli.fsb-zg.com/Article/details/051932.sHtML<br>
+binli.fsb-zg.com/Article/details/837440.sHtML<br>
+binli.fsb-zg.com/Article/details/738484.sHtML<br>
+binli.fsb-zg.com/Article/details/027706.sHtML<br>
+binli.fsb-zg.com/Article/details/328736.sHtML<br>
+binli.fsb-zg.com/Article/details/590445.sHtML<br>
+binli.fsb-zg.com/Article/details/024769.sHtML<br>
+binli.fsb-zg.com/Article/details/350624.sHtML<br>
+binli.fsb-zg.com/Article/details/055602.sHtML<br>
+binli.fsb-zg.com/Article/details/862739.sHtML<br>
+binli.fsb-zg.com/Article/details/825240.sHtML<br>
+binli.fsb-zg.com/Article/details/300621.sHtML<br>
+binli.fsb-zg.com/Article/details/322686.sHtML<br>
+binli.fsb-zg.com/Article/details/418490.sHtML<br>
+binli.fsb-zg.com/Article/details/373352.sHtML<br>
+binli.fsb-zg.com/Article/details/633625.sHtML<br>
+binli.fsb-zg.com/Article/details/513984.sHtML<br>
+binli.fsb-zg.com/Article/details/170117.sHtML<br>
+binli.fsb-zg.com/Article/details/485270.sHtML<br>
+binli.fsb-zg.com/Article/details/438961.sHtML<br>
+binli.fsb-zg.com/Article/details/651114.sHtML<br>
+binli.fsb-zg.com/Article/details/747103.sHtML<br>
+binli.fsb-zg.com/Article/details/797518.sHtML<br>
+binli.fsb-zg.com/Article/details/101100.sHtML<br>
+binli.fsb-zg.com/Article/details/660583.sHtML<br>
+binli.fsb-zg.com/Article/details/536628.sHtML<br>
+binli.fsb-zg.com/Article/details/765183.sHtML<br>
+binli.fsb-zg.com/Article/details/976209.sHtML<br>
+binli.fsb-zg.com/Article/details/875209.sHtML<br>
+binli.fsb-zg.com/Article/details/581570.sHtML<br>
+binli.fsb-zg.com/Article/details/353966.sHtML<br>
+binli.fsb-zg.com/Article/details/043095.sHtML<br>
+binli.fsb-zg.com/Article/details/823317.sHtML<br>
+binli.fsb-zg.com/Article/details/428105.sHtML<br>
+binli.fsb-zg.com/Article/details/755665.sHtML<br>
+binli.fsb-zg.com/Article/details/679202.sHtML<br>
+binli.fsb-zg.com/Article/details/019273.sHtML<br>
+binli.fsb-zg.com/Article/details/047587.sHtML<br>
+binli.fsb-zg.com/Article/details/680475.sHtML<br>
+binli.fsb-zg.com/Article/details/681432.sHtML<br>
+binli.fsb-zg.com/Article/details/912842.sHtML<br>
+binli.fsb-zg.com/Article/details/210424.sHtML<br>
+binli.fsb-zg.com/Article/details/449102.sHtML<br>
+binli.fsb-zg.com/Article/details/862146.sHtML<br>
+binli.fsb-zg.com/Article/details/976824.sHtML<br>
+binli.fsb-zg.com/Article/details/870210.sHtML<br>
+binli.fsb-zg.com/Article/details/240172.sHtML<br>
+binli.fsb-zg.com/Article/details/138213.sHtML<br>
+binli.fsb-zg.com/Article/details/562389.sHtML<br>
+binli.fsb-zg.com/Article/details/485817.sHtML<br>
+binli.fsb-zg.com/Article/details/240150.sHtML<br>
+binli.fsb-zg.com/Article/details/249325.sHtML<br>
+binli.fsb-zg.com/Article/details/758703.sHtML<br>
+binli.fsb-zg.com/Article/details/062110.sHtML<br>
+binli.fsb-zg.com/Article/details/345031.sHtML<br>
+binli.fsb-zg.com/Article/details/146816.sHtML<br>
+binli.fsb-zg.com/Article/details/917253.sHtML<br>
+binli.fsb-zg.com/Article/details/187889.sHtML<br>
+binli.fsb-zg.com/Article/details/007253.sHtML<br>
+binli.fsb-zg.com/Article/details/799479.sHtML<br>
+binli.fsb-zg.com/Article/details/723837.sHtML<br>
+binli.fsb-zg.com/Article/details/262938.sHtML<br>
+binli.fsb-zg.com/Article/details/639097.sHtML<br>
+binli.fsb-zg.com/Article/details/332094.sHtML<br>
+binli.fsb-zg.com/Article/details/542769.sHtML<br>
+binli.fsb-zg.com/Article/details/619070.sHtML<br>
+binli.fsb-zg.com/Article/details/428500.sHtML<br>
+binli.fsb-zg.com/Article/details/314928.sHtML<br>
+binli.fsb-zg.com/Article/details/577310.sHtML<br>
+binli.fsb-zg.com/Article/details/093690.sHtML<br>
+binli.fsb-zg.com/Article/details/240315.sHtML<br>
+binli.fsb-zg.com/Article/details/889486.sHtML<br>
+binli.fsb-zg.com/Article/details/856678.sHtML<br>
+binli.fsb-zg.com/Article/details/451986.sHtML<br>
+binli.fsb-zg.com/Article/details/342709.sHtML<br>
+binli.fsb-zg.com/Article/details/790090.sHtML<br>
+binli.fsb-zg.com/Article/details/463650.sHtML<br>
+binli.fsb-zg.com/Article/details/929190.sHtML<br>
+binli.fsb-zg.com/Article/details/174143.sHtML<br>
+binli.fsb-zg.com/Article/details/020158.sHtML<br>
+binli.fsb-zg.com/Article/details/343704.sHtML<br>
+binli.fsb-zg.com/Article/details/344034.sHtML<br>
+binli.fsb-zg.com/Article/details/821078.sHtML<br>
+binli.fsb-zg.com/Article/details/176035.sHtML<br>
+binli.fsb-zg.com/Article/details/467282.sHtML<br>
+binli.fsb-zg.com/Article/details/166183.sHtML<br>
+binli.fsb-zg.com/Article/details/288735.sHtML<br>
+binli.fsb-zg.com/Article/details/619031.sHtML<br>
+binli.fsb-zg.com/Article/details/022502.sHtML<br>
+binli.fsb-zg.com/Article/details/063146.sHtML<br>
+binli.fsb-zg.com/Article/details/052169.sHtML<br>
+binli.fsb-zg.com/Article/details/429586.sHtML<br>
+binli.fsb-zg.com/Article/details/367710.sHtML<br>
+binli.fsb-zg.com/Article/details/040387.sHtML<br>
+binli.fsb-zg.com/Article/details/198332.sHtML<br>
+binli.fsb-zg.com/Article/details/023291.sHtML<br>
+binli.fsb-zg.com/Article/details/465735.sHtML<br>
+binli.fsb-zg.com/Article/details/124636.sHtML<br>
+binli.fsb-zg.com/Article/details/278902.sHtML<br>
+binli.fsb-zg.com/Article/details/481364.sHtML<br>
+binli.fsb-zg.com/Article/details/987400.sHtML<br>
+binli.fsb-zg.com/Article/details/077763.sHtML<br>
+binli.fsb-zg.com/Article/details/973336.sHtML<br>
+binli.fsb-zg.com/Article/details/225147.sHtML<br>
+binli.fsb-zg.com/Article/details/454913.sHtML<br>
+binli.fsb-zg.com/Article/details/782571.sHtML<br>
+binli.fsb-zg.com/Article/details/687859.sHtML<br>
+binli.fsb-zg.com/Article/details/445510.sHtML<br>
+binli.fsb-zg.com/Article/details/095353.sHtML<br>
+binli.fsb-zg.com/Article/details/805315.sHtML<br>
+binli.fsb-zg.com/Article/details/725813.sHtML<br>
+binli.fsb-zg.com/Article/details/900242.sHtML<br>
+binli.fsb-zg.com/Article/details/403592.sHtML<br>
+binli.fsb-zg.com/Article/details/358128.sHtML<br>
+binli.fsb-zg.com/Article/details/604105.sHtML<br>
+binli.fsb-zg.com/Article/details/468834.sHtML<br>
+binli.fsb-zg.com/Article/details/401145.sHtML<br>
+binli.fsb-zg.com/Article/details/491602.sHtML<br>
+binli.fsb-zg.com/Article/details/261711.sHtML<br>
+binli.fsb-zg.com/Article/details/943762.sHtML<br>
+binli.fsb-zg.com/Article/details/295700.sHtML<br>
+binli.fsb-zg.com/Article/details/866143.sHtML<br>
+binli.fsb-zg.com/Article/details/951521.sHtML<br>
+binli.fsb-zg.com/Article/details/356447.sHtML<br>
+binli.fsb-zg.com/Article/details/943554.sHtML<br>
+binli.fsb-zg.com/Article/details/388570.sHtML<br>
+binli.fsb-zg.com/Article/details/711134.sHtML<br>
+binli.fsb-zg.com/Article/details/326851.sHtML<br>
+binli.fsb-zg.com/Article/details/836769.sHtML<br>
+binli.fsb-zg.com/Article/details/549139.sHtML<br>
+binli.fsb-zg.com/Article/details/343815.sHtML<br>
+binli.fsb-zg.com/Article/details/731721.sHtML<br>
+binli.fsb-zg.com/Article/details/386650.sHtML<br>
+binli.fsb-zg.com/Article/details/887405.sHtML<br>
+binli.fsb-zg.com/Article/details/761631.sHtML<br>
+binli.fsb-zg.com/Article/details/083255.sHtML<br>
+binli.fsb-zg.com/Article/details/587066.sHtML<br>
+binli.fsb-zg.com/Article/details/829007.sHtML<br>
+binli.fsb-zg.com/Article/details/247441.sHtML<br>
+binli.fsb-zg.com/Article/details/317061.sHtML<br>
+binli.fsb-zg.com/Article/details/635298.sHtML<br>
+binli.fsb-zg.com/Article/details/717335.sHtML<br>
+binli.fsb-zg.com/Article/details/899932.sHtML<br>
+binli.fsb-zg.com/Article/details/199230.sHtML<br>
+binli.fsb-zg.com/Article/details/973036.sHtML<br>
+binli.fsb-zg.com/Article/details/086336.sHtML<br>
+binli.fsb-zg.com/Article/details/906793.sHtML<br>
+binli.fsb-zg.com/Article/details/370211.sHtML<br>
+binli.fsb-zg.com/Article/details/336511.sHtML<br>
+binli.fsb-zg.com/Article/details/240843.sHtML<br>
+binli.fsb-zg.com/Article/details/755550.sHtML<br>
+binli.fsb-zg.com/Article/details/573302.sHtML<br>
+binli.fsb-zg.com/Article/details/639857.sHtML<br>
+binli.fsb-zg.com/Article/details/617702.sHtML<br>
+binli.fsb-zg.com/Article/details/633296.sHtML<br>
+binli.fsb-zg.com/Article/details/388857.sHtML<br>
+binli.fsb-zg.com/Article/details/607221.sHtML<br>
+binli.fsb-zg.com/Article/details/102772.sHtML<br>
+binli.fsb-zg.com/Article/details/432959.sHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2620:34:34
